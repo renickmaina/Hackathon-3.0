@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Your Mood Trends</h2>
+<form method="POST" action="{{ url_for('journal') }}">
+    <textarea name="entry" placeholder="Write your thoughts..." required></textarea>
+    <button type="submit">Save Entry</button>
+</form>
+
+<h3>Entries</h3>
+<ul>
+{% for e in entries %}
+    <li>{{ e.created_at }} - {{ e.mood_label }} ({{ e.mood_score }})</li>
+{% endfor %}
+</ul>
+
+<canvas id="moodChart"></canvas>
+
+<!-- IntaSend Payment Button -->
+<script src="https://checkout.intasend.com/js/intasend-inline.js"></script>
+<button class="intasend-button"
+    data-mz_key="{{ publishable_key }}"
+    data-amount="100"
+    data-currency="KES"
+    data-country="KE">
+    Upgrade to Premium
+</button>
+
+<script src="{{ url_for('static', filename='chart.js') }}"></script>
+{% endblock %}

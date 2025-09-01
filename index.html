@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Write a Journal Entry</h2>
+<form method="POST" action="{{ url_for('journal') }}">
+    <textarea name="entry" placeholder="how do you feel..." required></textarea>
+    <button type="submit">Save Entry</button>
+</form>
+{% endblock %}
